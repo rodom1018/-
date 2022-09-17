@@ -82,14 +82,44 @@ queue.back();
 queue.size();
 queue.empty();
 
+4. 우선순위 큐
+#include <queue>
+priority_queue<int> pq;
+pq.push(5);
+pq.push(1);
+pq.push(7);
 
+    struct cmp{
+        bool operator()(int a, int b){
+            return a>b;
+        }
+    }
+    #include <queue>
+
+    priority_queue<int> q1; // 루트가 최대인 우선순위 큐 선언
+    priority_queue<int, vector<int>, greater<int>>; // 루트가 최소값인 우선순위 큐 선언
+    priority_queue<int, vector<int>, cmp>;// 루트가 최소값인 우선순위 큐 선언
+    
+    
+주의 ! 그냥 배열 정렬 compare때에 비해
+1) struct 에 쌓여있고 , 
+2) 거꾸로다 ! 아래와 같은 때라면 12345 같이 오름차이지만, 최대 숫자가 나오는 힙 ( 최대힙 ) 이다 . 
+struct compare {
+	bool operator()(const Struct& s1, const Struct& s2) {
+		return s1.compare_value < s2.compare_value;
+	}
+};
+
+priority_queue<Struct, vector<Struct>, compare> pq;
 ==================================================
+
 
 [ 구현 ]
 
 [ 그리디 ]
-그리디를 풀 때에는 이렇게 " 탐욕적으로 풀어도 될련지 ? " 를 꼭 생각해보자 . 
+그리디를 풀 때에는 이렇게 " 탐욕적으로 풀어도 될련지 ? " 를 꼭 생각해보자 . <- 그리디, dp 구분에 필요한 생각임. 
 
 [ dp ]
-
-<< 그리디와 dp를 구분하는 마음가짐 >>
+	- 최적 부분 구조 ( optimal substructure) 
+	- 중복되는 부분 문제 ( overlapping subproblem ) 일 경우 사용 
+바텀업으로  푸는 걸 디폴트로 하자 ! 
