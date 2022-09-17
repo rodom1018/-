@@ -111,6 +111,14 @@ struct compare {
 };
 
 priority_queue<Struct, vector<Struct>, compare> pq;
+
+우선순위 큐에 pair가 들어가게 작성해야 할 경우가 있다면 다음과 같이 작성할 수 있습니다. T에 pair<int, int> 가 들어가는 것 뿐입니다.
+아래와 같이 선언하면, pair에서 first 값을 기준으로 Max-Heap 동작을 합니다.
+priority_queue<pair<int, int>> pq;
+
+만약 pair<int, int> 형을 우선순위 큐에서 사용하고 싶은데, Min-Heap으로 동작하게 하려면 똑같은 방법으로 아래와 같이 작성합니다.
+priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int,int>> pq;
+
 ==================================================
 
 
