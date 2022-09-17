@@ -1,0 +1,3 @@
+/Users/user/github/coding_test/기초(basic)/cmake-build-debug/CMakeFiles/_basic_.dir
+/Users/user/github/coding_test/기초(basic)/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/user/github/coding_test/기초(basic)/cmake-build-debug/CMakeFiles/rebuild_cache.dir
