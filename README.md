@@ -68,6 +68,20 @@ int main(){
 
 }
   
+  
+3. 큐
+
+#include <queue>
+
+queue<int> q;
+
+queue.push(element);
+queue.pop();
+queue.front();
+queue.back();
+queue.size();
+queue.empty();
+
 
 ==================================================
 
