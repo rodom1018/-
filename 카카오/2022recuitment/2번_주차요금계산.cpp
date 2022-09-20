@@ -1,13 +1,8 @@
-// 1번
 #include <string>
 #include <vector>
 #include <iostream>
 #include <algorithm>
 using namespace std;
-
-// cout << records[i].substr(0,5); 05:34
-// cout << records[i].substr(5,5); 5961
-// cout << records[i].substr(10,4) << endl; OUT
 
 int calculate(string in_car, string out_car, vector<int> fees){
     string in_time = in_car.substr(0,5);
@@ -41,6 +36,8 @@ int calculate_cost(int diff_time,vector<int> fees){
 
     return cost;
 }
+
+
 vector<int> solution(vector<int> fees, vector<string> records) {
 
     vector<pair<int,int>> my_fees;
@@ -105,17 +102,4 @@ vector<int> solution(vector<int> fees, vector<string> records) {
     }
 
     return answer;
-}
-
-
-int main() {
-    vector<int> fees = {180, 5000, 10, 600} ;
-    vector<string> records = {"05:34 5961 IN", "06:00 0000 IN", "06:34 0000 OUT", "07:59 5961 OUT", "07:59 0148 IN", "18:59 0000 IN", "19:09 0148 OUT", "22:59 5961 IN", "23:00 5961 OUT"};
-    vector<int> answer = solution(fees, records);
-
-    for(int i=0 ; i<answer.size(); i++){
-        cout<< answer[i] << endl;
-    }
-
-    return 0;
 }
