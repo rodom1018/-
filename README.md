@@ -1,5 +1,8 @@
 ! 코테 알고리즘 마지막 점검용 !
 
+[python 문자열]
+https://jimmy-ai.tistory.com/62
+
 [ c++ 문법 ]
 1. sort
 (오름차순)
