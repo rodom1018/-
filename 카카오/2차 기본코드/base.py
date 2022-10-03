@@ -1,8 +1,15 @@
 import requests
-
+import json
 X_AUTH_TOKEN = "6a6e55628acaa519786707632f1bc709"
 AUTH_KEY = ""
-
+practice = []
+"""
+lux= {'health': 490, 'mana': 334, 'melee': 550, 'armor': 18.72}
+donghyeon = {'health': 1, 'mana': 0, 'melee': 1, 'armor': 0}
+practice.append(lux)
+practice.append(donghyeon)
+"""
+print(practice)
 def init1():
     global X_AUTH_TOKEN
     global AUTH_KEY
@@ -52,20 +59,31 @@ user_info = requests.get('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws
 user_info = user_info['user_info']
 print(user_info)
 for i in range(len(user_info)):
-    user_info[i]['grade'] = 40000
+    user_info[i]['grade'] = 1000
 print(user_info)
 ############################################게임시작###########################################3
 for now_time in range(596):
-    if now_time == 595:
+    if now_time >= 595:
+        for i in range(len(user_info)):
+            user_info[i]['grade'] = int(user_info[i]['grade'])
+
+        data = {
+            'commands': user_info,
+        }
         change_user = requests.put('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/change_grade',
-                                   headers=headers, json=user_info).json()
+                                   headers=headers, data=json.dumps(data)).json()
+        print(change_user)
+        final_result = requests.get('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/user_info',
+                                 headers=headers).json()
+        print(final_result)
+
     print(now_time)
     # 대기열
     ready_list = requests.get('https://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/waiting_line',
                               headers=headers).json()
     ready_list= ready_list['waiting_line']
 
-    # print(ready_list) [{'id': 13, 'from': 1}, {'id': 17, 'from': 1}, 
+    # print(ready_list) [{'id': 13, 'from': 1}, {'id': 17, 'from': 1},
     match_data = []
     for now_user in range(0,len(ready_list),2):
         if now_user + 1 >= len(ready_list):
