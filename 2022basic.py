@@ -1,15 +1,8 @@
 import requests
 import json
+MY_URL = "https://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/"
 X_AUTH_TOKEN = "6a6e55628acaa519786707632f1bc709"
 AUTH_KEY = ""
-practice = []
-"""
-lux= {'health': 490, 'mana': 334, 'melee': 550, 'armor': 18.72}
-donghyeon = {'health': 1, 'mana': 0, 'melee': 1, 'armor': 0}
-practice.append(lux)
-practice.append(donghyeon)
-"""
-print(practice)
 def init1():
     global X_AUTH_TOKEN
     global AUTH_KEY
@@ -22,7 +15,7 @@ def init1():
         'problem': 1,
     }
 
-    response = requests.post('https://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/start', headers=headers,
+    response = requests.post(MY_URL+'start', headers=headers,
                              json=json_data).json()
     AUTH_KEY = response['auth_key']
 
@@ -39,7 +32,7 @@ def init2():
         'problem': 2,
     }
 
-    response = requests.post('https://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/start', headers=headers,
+    response = requests.post(MY_URL+'start', headers=headers,
                              json=json_data).json()
     AUTH_KEY = response['auth_key']
 
@@ -54,7 +47,7 @@ headers = {
     'Content-Type': 'application/json',
 }
 #user info 를 가져오고 ( 몇 명 인지 ? 세기위해서 . )
-user_info = requests.get('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/user_info', headers=headers).json()
+user_info = requests.get(MY_URL+'user_info', headers=headers).json()
 
 user_info = user_info['user_info']
 print(user_info)
@@ -70,17 +63,14 @@ for now_time in range(596):
         data = {
             'commands': user_info,
         }
-        change_user = requests.put('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/change_grade',
-                                   headers=headers, data=json.dumps(data)).json()
+        change_user = requests.put(MY_URL+'change_grade', headers=headers, data=json.dumps(data)).json()
         print(change_user)
-        final_result = requests.get('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/user_info',
-                                 headers=headers).json()
+        final_result = requests.get(MY_URL+'user_info',headers=headers).json()
         print(final_result)
 
     print(now_time)
     # 대기열
-    ready_list = requests.get('https://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/waiting_line',
-                              headers=headers).json()
+    ready_list = requests.get(MY_URL + 'waiting_line',headers=headers).json()
     ready_list= ready_list['waiting_line']
 
     # print(ready_list) [{'id': 13, 'from': 1}, {'id': 17, 'from': 1},
@@ -98,12 +88,10 @@ for now_time in range(596):
     json_data = {
         'pairs': match_data,
     }
-    match = requests.put('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/match', headers=headers,
-                            json=json_data).json()
+    match = requests.put(MY_URL +'match', headers=headers,json=json_data).json()
 
     #이번 턴에 게임이끝난 유저들의 게임 결과 반환 .
-    game_list = requests.get('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/game_result',
-                               headers=headers).json()
+    game_list = requests.get(MY_URL+'game_result',headers=headers).json()
 
     game_list = game_list['game_result']
 
@@ -124,7 +112,7 @@ for now_time in range(596):
 
 #####################################게임끝 ##################
 
-score = requests.get('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/score', headers=headers).json()
+score = requests.get(MY_URL+'score', headers=headers).json()
 print(score)
 
 ###########################2번초기화 ################################
@@ -135,7 +123,7 @@ headers = {
     'Content-Type': 'application/json',
 }
 #user info 를 가져오고 ( 몇 명 인지 ? 세기위해서 . )
-user_info = requests.get('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/user_info', headers=headers).json()
+user_info = requests.get(MY_URL + 'user_info', headers=headers).json()
 
 user_info = user_info['user_info']
 print(user_info)
@@ -152,17 +140,14 @@ for now_time in range(596):
         data = {
             'commands': user_info,
         }
-        change_user = requests.put('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/change_grade',
-                                   headers=headers, data=json.dumps(data)).json()
+        change_user = requests.put(MY_URL +'change_grade',headers=headers, data=json.dumps(data)).json()
         print(change_user)
-        final_result = requests.get('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/user_info',
-                                 headers=headers).json()
+        final_result = requests.get(MY_URL +'user_info', headers=headers).json()
         print(final_result)
 
     print(now_time)
     # 대기열
-    ready_list = requests.get('https://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/waiting_line',
-                              headers=headers).json()
+    ready_list = requests.get(MY_URL + 'waiting_line', headers=headers).json()
     ready_list= ready_list['waiting_line']
 
     # print(ready_list) [{'id': 13, 'from': 1}, {'id': 17, 'from': 1},
@@ -180,11 +165,10 @@ for now_time in range(596):
     json_data = {
         'pairs': match_data,
     }
-    match = requests.put('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/match', headers=headers,
-                            json=json_data).json()
+    match = requests.put(MY_URL+ 'match', headers=headers,json=json_data).json()
 
     #이번 턴에 게임이끝난 유저들의 게임 결과 반환 .
-    game_list = requests.get('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/game_result',
+    game_list = requests.get(MY_URL + 'game_result',
                                headers=headers).json()
 
     game_list = game_list['game_result']
@@ -202,5 +186,14 @@ for now_time in range(596):
 
 #####################################2번 게임끝 ##################
 
-score = requests.get('http://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod/score', headers=headers).json()
+score = requests.get(MY_URL +'score', headers=headers).json()
 print(score)
+
+"""
+practice = []
+lux= {'health': 490, 'mana': 334, 'melee': 550, 'armor': 18.72}
+donghyeon = {'health': 1, 'mana': 0, 'melee': 1, 'armor': 0}
+practice.append(lux)
+practice.append(donghyeon)
+print(practice)
+"""
