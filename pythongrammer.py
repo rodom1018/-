@@ -57,4 +57,12 @@ sample = "AAA,BBB,CCC,DDD,EEE,FFF,GGG"
 my_list = sample.split(",")
 print(my_list)
 
+inputStr = "   아기 판다와 어른 판다는 둘 다 판다입니다.    "
+replaceStr = inputStr.replace("판다", "사자")
+print(replaceStr)
+
+replaceStr = inputStr.strip()
+print(replaceStr)
+
+
 
