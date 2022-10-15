@@ -111,7 +111,21 @@ int main(void){
 
     cout << pq3.top().first << "//" << pq3.top().second << endl;
 
+    ///////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////deque / //////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+    #include <deque>
 
+    using namespace std;
 
+    int main(void){
+        deque<int> dq;
+        dq.push_front(1);
+        dq.push_back(2);
+        dq.push_back(3);
+        dq.pop_back();
+        dq.pop_front();
+        dq.size();
+}
 
 }

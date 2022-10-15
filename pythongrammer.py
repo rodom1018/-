@@ -28,6 +28,10 @@ print(my_dict)
 my_dict = dict(sorted(my_dict.items(), key=lambda x:x[0]))
 print(my_dict)
 
+#apple 이 있으면 값을 가져오고
+#apple 없으면 -1 반환.
+dict.get('apple', -1)
+
 ##########################set 정렬#################################
 s = set()
 s.add(1)
