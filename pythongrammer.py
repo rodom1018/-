@@ -16,7 +16,12 @@ a.sort(reverse=True)
 print(a)
 
 a = [[1,2], [100,1],[3,4]]
+
+# 단일 조건으로 정렬.
 a = sorted(a, key=lambda x:x[0])
+
+# 이중 조건으로 정렬. 
+a = sorted(a, key=lambda x:(x[0],x[1]))
 print(a)
 ###########################dict 정렬###############################
 my_dict = {}
